@@ -1,17 +1,24 @@
 FROM debian:buster
 
 RUN apt update && \
-    apt install -y vim && \
-    apt install -y mariadb-server && \
-    apt install -y nginx && \
-    apt -y install sudo && \
-    apt install -y wget php php-cgi php-mysqli php-pear php-mbstring php-gettext libapache2-mod-php php-common php-phpseclib php-mysql
+	apt install -y vim && \
+	apt install -y wget php-mysql php-json php-fpm php-mbstring php-json php-mbstring && \
+	apt install -y mariadb-server && \	
+	apt install -y nginx && \
+	rm -rf /var/www/html/index.nginx-debian.html
 
-RUN wget https://files.phpmyadmin.net/phpMyAdmin/4.9.0.1/phpMyAdmin-4.9.0.1-all-languages.zip && \
-    apt install -y unzip && \
-    unzip phpMyAdmin-4.9.0.1-all-languages.zip && \
-    sudo mv phpMyAdmin-4.9.0.1-all-languages /usr/share/phpmyadmin && \
-    sudo chown -R www-data:www-data /usr/share/phpmyadmin
+RUN	wget https://files.phpmyadmin.net/phpMyAdmin/5.0.1/phpMyAdmin-5.0.1-english.tar.gz && \
+	tar -xzvf phpMyAdmin-5.0.1-english.tar.gz && \
+	mv phpMyAdmin-5.0.1-english /var/www/html/phpmyadmin && \
+	chown -R www-data:www-data /var/www/html/phpmyadmin
 
-CMD service nginx start && \
-    bash
+COPY srcs/index.html /var/www/html/
+COPY srcs/default /etc/nginx/sites-enabled/
+COPY srcs/config.inc.php /var/www/html/phpmyadmin
+COPY srcs/start.sql /
+
+CMD service mysql start && \
+	mysql -u root < /start.sql && \
+	service php7.3-fpm start && \
+	service nginx start && \
+	bash

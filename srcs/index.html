@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>ft_server</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="//db.onlinewebfonts.com/c/0b7d8a39b62b28cf0cfe3cea90b8baa3?family=Gabriel+Weiss'+Friends+Font" rel="stylesheet" type="text/css"/>
+<style>
+  body,h1 {font-family: "Gabriel Weiss' Friends Font"}
+  body, html {height: 100%}
+  #bgimg {
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: url("https://media3.giphy.com/media/Rhf0uSWt1P2TFqVMZK/giphy.gif");
+  }
+  a {
+    text-decoration: none;
+    transition: font-size 1s;
+  }
+  a:hover {
+    font-size: 25px;
+  }
+</style>
+<body>
+<div id="bgimg" class="w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top">f<span style="color:#cb150e; margin-left: 5px;">·</span>t s<span style="color:#fdc938">·</span>e<span style="color:blue; margin-left: 5px">·</span>r<span style="color:#cb150e">·</span>v<span style="color:#fdc938">·</span>e<span style="color:blue; margin-left: 6px;">·</span>r</h1>
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center"><a href="/wordpress">Wordpress</a></p>
+    <p class="w3-large w3-center"><a href="/phpmyadmin">PhpMyAdmin</a></p>
+  </div>
+</div>
+</body>
+<script>
+  let i = 1;
+  function changeBackground()
+  {
+    let array = [
+      "https://media3.giphy.com/media/Rhf0uSWt1P2TFqVMZK/giphy.gif",
+      "https://media1.giphy.com/media/12TtQtbOJr0T8A/giphy.gif",
+      "https://media1.tenor.com/images/7cb48ac887d6bcac03533694cc359592/tenor.gif?itemid=7337796",
+      "https://media1.tenor.com/images/2622ca813a1dfa0fa78c2c1375e7a7a9/tenor.gif?itemid=15812405",
+      "https://media1.tenor.com/images/968baf92994fdd664fba8e5ab4a6e6ba/tenor.gif?itemid=14605127",
+      "https://i.pinimg.com/originals/6c/1c/5a/6c1c5a76db0dd7f80075be0f022319df.gif",
+      "https://i.imgur.com/eOtKEZL.gif"];
+
+      document.getElementById("bgimg").style.backgroundImage = 'url("' + array[i] + '")';
+      (i != 6 ? i++ : i = 0);
+  }
+  setInterval(changeBackground, 1500);
+</script>
+</html>
